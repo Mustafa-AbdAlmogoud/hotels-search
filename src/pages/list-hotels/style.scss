@@ -1,0 +1,24 @@
+:local(.container) {
+  width: 80%;
+  margin: 3rem auto;
+  display: flex;
+}
+
+:local(.searchInput) {
+  width: 300px;
+  margin-top: 50px;
+}
+
+:local(.sortBar) {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 0 30px 0 17px;
+}
+
+:local(.info) {
+  font-size: 18px;
+  font-weight: bold;
+  opacity: .5;
+  margin-bottom: 0;
+}
