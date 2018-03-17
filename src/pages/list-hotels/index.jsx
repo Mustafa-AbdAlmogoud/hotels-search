@@ -38,44 +38,53 @@ class ListHotels extends Component {
         hotel1.price - hotel2.price),
     });
   }
+  renderHotels = () =>
+    (
+      <div className={styles.container}>
+        <div>
+          <Input.Search
+            className={styles.searchInput}
+            placeholder="Hotel Name"
+            onSearch={this.handleSearch}
+          />
+        </div>
+        <div>
+          <div className={styles.sortBar}>
+            <p className={styles.info}>
+              Total Nights {this.props.totalNights}
+            </p>
+            <SortUtils
+              sortByName={this.sortByName}
+              sortByPrice={this.sortByPrice}
+            />
+          </div>
+          <HotelCards
+            hotels={this.state.filterdHotels}
+            totalNights={this.props.totalNights}
+          />
+        </div>
+      </div>
+    );
+  renderNoHotels = () =>
+    (
+      <h1 style={{
+        position: 'absolute',
+        top: '40%',
+        left: '35%',
+        opacity: '.5',
+      }}
+      >
+        Sorry there is no available hotels
+      </h1>
+    );
+
   render() {
     return (
       <div>
         { this.state.filterdHotels.length !== 0 ?
-          <div className={styles.container}>
-            <div>
-              <Input.Search
-                className={styles.searchInput}
-                placeholder="Hotel Name"
-                onSearch={this.handleSearch}
-              />
-            </div>
-            <div>
-              <div className={styles.sortBar}>
-                <p className={styles.info}>
-                  Total Nights {this.props.totalNights}
-                </p>
-                <SortUtils
-                  sortByName={this.sortByName}
-                  sortByPrice={this.sortByPrice}
-                />
-              </div>
-              <HotelCards
-                hotels={this.state.filterdHotels}
-                totalNights={this.props.totalNights}
-              />
-            </div>
-          </div>
+          this.renderHotels()
           :
-          <h1 style={{
-               position: 'absolute',
-               top: '40%',
-               left: '35%',
-               opacity: '.5',
-               }}
-          >
-            Sorry there is no available hotels
-          </h1>
+          this.renderNoHotels()
        }
       </div>
     );
